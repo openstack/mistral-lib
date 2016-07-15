@@ -14,7 +14,7 @@
 Stub module for Custom Actions API tests.
 """
 
-from mistral.tests import base
+from mistral_lib.tests import base
 
 
 class TestActionsAPI(base.TestCase):
