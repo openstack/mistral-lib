@@ -1,0 +1,7 @@
+[run]
+branch = True
+source = mistral-lib
+omit = mistral-lib/openstack/*
+
+[report]
+ignore_errors = True
