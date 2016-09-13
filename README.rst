@@ -9,7 +9,7 @@ across Mistral ecosystem and used to write Mistral pluggable extensions such as 
 actions and YAQL functions.
 
 * Free software: Apache license
-* Documentation: http://docs.openstack.org/developer/mistral-lib
+* Documentation: http://docs.openstack.org/developer/mistral
 * Source: http://git.openstack.org/cgit/openstack/mistral-lib
 * Bugs: http://bugs.launchpad.net/mistral
 
