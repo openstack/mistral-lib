@@ -1,6 +1,6 @@
-========
+=====
 Usage
-========
+=====
 
 To use mistral-lib in a project::
 

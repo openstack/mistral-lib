@@ -1,6 +1,6 @@
-===============================
+===========
 mistral-lib
-===============================
+===========
 
 Mistral shared routings and utilities (Actions API, YAQL functions API, data types etc.)
 
