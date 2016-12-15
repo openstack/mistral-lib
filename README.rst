@@ -11,11 +11,13 @@ Team and repository tags
 mistral-lib
 ===========
 
-Mistral shared routings and utilities (Actions API, YAQL functions API, data types etc.)
+This library contains data types, exceptions, functions and utilities common to
+Mistral, python-mistralclient and mistral-extra repositories.  This library also
+contains the public interfaces for 3rd party integration (e.g. Actions API, YAQL
+functions API, etc.)
 
-This Mistral subproject aims to have all common APIs, data types and utilities shared
-across Mistral ecosystem and used to write Mistral pluggable extensions such as custom
-actions and YAQL functions.
+If you want to use OpenStack in your custom actions or functions, you will also
+need to use http://git.openstack.org/cgit/openstack/mistral-extra .
 
 * Free software: Apache license
 * Documentation: http://docs.openstack.org/developer/mistral

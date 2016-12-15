@@ -1,4 +1,5 @@
 # Copyright 2016 - Nokia Networks.
+# Copyright 2017 - Red Hat, Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -30,17 +31,15 @@ class Action(object):
     action classes may have any number of parameters defining action behavior.
     These parameters must correspond to parameters declared in action
     specification (e.g. using DSL or others).
-    Action initializer may have a conventional argument with name
-    "action_context". If it presents then action factory will fill it with
-    a dictionary containing contextual information like execution identifier,
-    workbook name and other that may be needed for some specific action
-    implementations.
     """
 
     @abc.abstractmethod
-    def run(self):
+    def run(self, context):
         """Run action logic.
 
+        :param context: a dictionary containing contextual information like
+        execution identifier, workbook name and other data that may be needed
+        for some specific action implementations.
         :return: Result of the action. Note that for asynchronous actions
         it should always be None, however, if even it's not None it will be
         ignored by a caller.
@@ -56,19 +55,6 @@ class Action(object):
         particular action semantics one or another option may be preferable.
         In case if action failed and there's no need to communicate any error
         result this method should throw a ActionException.
-        """
-        pass
-
-    @abc.abstractmethod
-    def test(self):
-        """Returns action test result.
-
-        This method runs in test mode as a test version of method run() to
-        generate and return a representative test result. It's basically a
-        contract for action 'dry-run' behavior specifically useful for
-        testing and workflow designing purposes.
-
-        :return: Representative action result.
         """
         pass
 
