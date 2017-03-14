@@ -1,6 +1,6 @@
 [run]
 branch = True
-source = mistral-lib
+source = mistral_lib
 
 
 [report]
