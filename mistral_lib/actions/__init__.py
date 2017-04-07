@@ -13,5 +13,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 from mistral_lib.actions.base import Action
+from mistral_lib.actions.types import Result
 
-__all__ = ['Action']
+__all__ = ['Action', 'Result']
