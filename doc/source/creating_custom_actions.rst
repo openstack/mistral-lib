@@ -13,9 +13,16 @@ How to write a Custom Action
             # store the incoming params
             self.param = param
 
-        def run(self):
-            # return your results here
-            return {'status': 0}
+        def run(self, context):
+
+            # Actions can be returned in a manner of ways. The simplest is
+            # return {'status': 0}
+            # or using a Result object. The Result has an optional parameter data
+            # that can be used to transfer information 
+            return actions.Result()
+            # Failed executions can also be returned using a workflow Result object
+            # that contains an non empty error parameter such as:
+            # return actions.Result(error="error text")
 
 
 2. Publish the class in a namespace (in your ``setup.cfg``)
