@@ -75,8 +75,3 @@ class MistralException(Exception):
     """
 
     message = "An unknown exception occurred"
-
-
-class ApplicationContextNotFoundException(MistralException):
-    http_code = 400
-    message = "Application context not found"
