@@ -15,6 +15,7 @@ Contents:
    installation
    usage
    contributing
+   creating_custom_actions
 
 Indices and tables
 ==================
