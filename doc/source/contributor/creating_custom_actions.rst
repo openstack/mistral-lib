@@ -18,7 +18,7 @@ How to write a Custom Action
             # Actions can be returned in a manner of ways. The simplest is
             # return {'status': 0}
             # or using a Result object. The Result has an optional parameter data
-            # that can be used to transfer information 
+            # that can be used to transfer information
             return actions.Result()
             # Failed executions can also be returned using a workflow Result object
             # that contains an non empty error parameter such as:
