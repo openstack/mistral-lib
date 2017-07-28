@@ -6,6 +6,7 @@
    :maxdepth: 1
 
    unreleased
+   pike
    newton
    mitaka
    liberty
