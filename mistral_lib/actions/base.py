@@ -33,6 +33,12 @@ class Action(object):
     specification (e.g. using DSL or others).
     """
 
+    def __init__(self):
+        # NOTE(d0ugal): We need to define an empty __init__ otherwise
+        # inspect.getargspec will fail in Python 2 for actions that subclass
+        # but don't define their own __init__.
+        pass
+
     @abc.abstractmethod
     def run(self, context):
         """Run action logic.
