@@ -1,0 +1,5 @@
+---
+deprecations:
+  - |
+    The attribute `context.execution.task_id` has been renamed to
+    `context.execution.task_execution_id`.

@@ -30,7 +30,7 @@ def _fake_context():
 
         execution_ctx = context.ExecutionContext(
             workflow_execution_id='workflow_execution_id',
-            task_id='task_id',
+            task_execution_id='task_execution_id',
             action_execution_id='action_execution_id',
             workflow_name='workflow_name',
             callback_url='callback_url')

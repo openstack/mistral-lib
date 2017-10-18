@@ -80,11 +80,27 @@ class SecurityContext(object):
 
 
 class ExecutionContext(object):
-    def __init__(self, workflow_execution_id=None, task_id=None,
+    def __init__(self, workflow_execution_id=None, task_execution_id=None,
                  action_execution_id=None, workflow_name=None,
-                 callback_url=None):
+                 callback_url=None, task_id=None):
         self.workflow_execution_id = workflow_execution_id
-        self.task_id = task_id
+        self.task_execution_id = task_execution_id
         self.action_execution_id = action_execution_id
         self.workflow_name = workflow_name
         self.callback_url = callback_url
+
+        if task_id is not None:
+            self.task_execution_id = task_id
+            self._deprecate_task_id_warning()
+
+    def _deprecate_task_id_warning(self):
+        warnings.warn(
+            "context.execution.task_id was deprecated in the Queens cycle. "
+            "Please use context.execution.task_execution_id. It will be "
+            "removed in a future release.", DeprecationWarning
+        )
+
+    @property
+    def task_id(self):
+        self._deprecate_task_id_warning()
+        return self.task_execution_id
