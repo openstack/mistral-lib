@@ -61,7 +61,8 @@ class SecurityContext(object):
     def __init__(self, auth_uri=None, auth_cacert=None, insecure=None,
                  service_catalog=None, region_name=None, is_trust_scoped=None,
                  redelivered=None, expires_at=None, trust_id=None,
-                 is_target=None):
+                 is_target=None, project_id=None, project_name=None,
+                 user_name=None, auth_token=None):
         self.auth_uri = auth_uri
         self.auth_cacert = auth_cacert
         self.insecure = insecure
@@ -72,6 +73,10 @@ class SecurityContext(object):
         self.expires_at = expires_at
         self.trust_id = trust_id
         self.is_target = is_target
+        self.project_id = project_id
+        self.project_name = project_name
+        self.user_name = user_name
+        self.auth_token = auth_token
 
 
 class ExecutionContext(object):

@@ -13,6 +13,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 from mistral_lib import actions
+from mistral_lib.actions import context
 from mistral_lib.tests import base as tests_base
 
 
@@ -24,8 +25,8 @@ class TestAction(actions.Action):
 
 class TestActionsBase(tests_base.TestCase):
 
-    def test_run(self):
-        context = {"name": "test"}
+    def test_run_empty_context(self):
+        ctx = context.ActionContext()
         action = TestAction()
-        result = action.run(context)
-        assert result == context
+        result = action.run(ctx)
+        assert result == ctx
