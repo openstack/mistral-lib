@@ -26,35 +26,17 @@ class ActionContext(object):
             "release.", DeprecationWarning
         )
 
-    @property
-    def auth_uri(self):
-        self._deprecation_warning("auth_uri")
-        return self.security.auth_uri
-
-    @property
-    def user_name(self):
-        self._deprecation_warning("user_name")
-        return self.security.user_name
-
-    @property
-    def auth_token(self):
-        self._deprecation_warning("auth_token")
-        return self.security.auth_token
-
-    @property
-    def project_name(self):
-        self._deprecation_warning("project_name")
-        return self.security.project_name
-
-    @property
-    def project_id(self):
-        self._deprecation_warning("project_id")
-        return self.security.project_id
-
-    @property
-    def insecure(self):
-        self._deprecation_warning("insecure")
-        return self.security.insecure
+    def __getattribute__(self, name):
+        deprecated = [
+            "auth_cacert", "auth_token", "auth_uri", "expires_at", "insecure",
+            "is_target", "is_trust_scoped", "project_id", "project_name",
+            "redelivered", "region_name", "service_catalog", "trust_id",
+            "user_name"
+        ]
+        if name in deprecated:
+            self._deprecation_warning(name)
+            return getattr(self.security, name)
+        return super(ActionContext, self).__getattribute__(name)
 
 
 class SecurityContext(object):
