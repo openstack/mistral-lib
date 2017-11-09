@@ -59,8 +59,10 @@ class TestActionsBase(tests_base.TestCase):
         ctx = _fake_context()
 
         deprecated_properties = [
-            "auth_uri", "user_name", "auth_token", "project_name",
-            "project_id", "insecure"
+            'auth_cacert', 'auth_token', 'auth_uri', 'expires_at',
+            'insecure', 'is_target', 'is_trust_scoped', 'project_id',
+            'project_name', 'redelivered', 'region_name', 'service_catalog',
+            'trust_id', 'user_name'
         ]
 
         for deprecated in deprecated_properties:
