@@ -32,7 +32,7 @@ class Serializer(object):
     def serialize(self, entity):
         """Converts the given object into a string.
 
-        :param entity: A object to be serialized.
+        :param entity: An object to be serialized.
         :return String containing the state of the object in serialized form.
         """
         raise NotImplementedError
