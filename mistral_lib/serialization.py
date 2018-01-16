@@ -98,7 +98,7 @@ class MistralSerializable(object):
 class PolymorphicSerializer(Serializer):
     """Polymorphic serializer.
 
-    The purpose of this class is to server as a serialization router
+    The purpose of this class is to serve as a serialization router
     between serializers that can work with entities of particular type.
     All concrete serializers associated with concrete entity classes
     should be registered via method 'register', after that an instance
