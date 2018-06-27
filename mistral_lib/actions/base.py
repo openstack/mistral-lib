@@ -43,9 +43,10 @@ class Action(object):
     def run(self, context):
         """Run action logic.
 
-        :param context: a dictionary containing contextual information like
-        execution identifier, workbook name and other data that may be needed
-        for some specific action implementations.
+        :param context: contains contextual information of the action.
+        The context includes an execution context (like execution identifier
+        and workflow name) and a security context with the authorization
+        details.
         :return: Result of the action. Note that for asynchronous actions
         it should always be None, however, if even it's not None it will be
         ignored by a caller.
