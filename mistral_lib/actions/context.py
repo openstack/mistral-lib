@@ -12,8 +12,10 @@
 
 import warnings
 
+from mistral_lib import serialization
 
-class ActionContext(object):
+
+class ActionContext(serialization.MistralSerializable):
 
     def __init__(self, security_ctx=None, execution_ctx=None):
         self.security = security_ctx
@@ -86,3 +88,19 @@ class ExecutionContext(object):
     def task_id(self):
         self._deprecate_task_id_warning()
         return self.task_execution_id
+
+
+class ActionContextSerializer(serialization.DictBasedSerializer):
+    def serialize_to_dict(self, entity):
+        return {
+            'security': vars(entity.security),
+            'execution': vars(entity.execution),
+        }
+
+    def deserialize_from_dict(self, entity_dict):
+        return ActionContext(
+            security_ctx=SecurityContext(**entity_dict['security']),
+            execution_ctx=ExecutionContext(**entity_dict['execution'])
+        )
+
+serialization.register_serializer(ActionContext, ActionContextSerializer())
