@@ -17,7 +17,7 @@ contains the public interfaces for 3rd party integration (e.g. Actions API, YAQL
 functions API, etc.)
 
 If you want to use OpenStack in your custom actions or functions, you will also
-need to use http://opendev.org/openstack/mistral-extra.
+need to use https://opendev.org/openstack/mistral-extra.
 
 * Free software: Apache license
 * Documentation: https://docs.openstack.org/mistral/latest/
