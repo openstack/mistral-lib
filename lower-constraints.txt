@@ -5,6 +5,7 @@ coverage==4.0
 debtcollector==1.2.0
 docutils==0.11
 dulwich==0.15.0
+eventlet==0.20.0
 extras==1.0.0
 fixtures==3.0.0
 flake8==2.5.5
@@ -25,6 +26,7 @@ netifaces==0.10.4
 openstackdocstheme==1.18.1
 os-client-config==1.28.0
 oslo.i18n==3.15.3
+oslo.log==3.36.0
 oslo.serialization==2.18.0
 oslo.utils==3.33.0
 oslotest==3.2.0
