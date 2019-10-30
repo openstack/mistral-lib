@@ -30,7 +30,7 @@ class MistralExceptionBase(Exception):
         if message is not None:
             self.message = message
 
-        super(MistralError, self).__init__(
+        super(MistralExceptionBase, self).__init__(
             '%d: %s' % (self.http_code, self.message))
 
     @property
