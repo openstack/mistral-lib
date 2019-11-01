@@ -250,3 +250,20 @@ class TestUtils(tests_base.TestCase):
             d[i] = {'value': 'This is a string that exceeds 35 characters'}
         s = utils.cut(d, 65500)
         self.assertThat(len(s), ttm.Not(ttm.GreaterThan(65500)))
+
+    def test_mask_data(self):
+        payload = {'adminPass': 'fooBarBaz'}
+        expected = {'adminPass': '***'}
+        self.assertEqual(expected, utils.mask_data(payload))
+
+        payload = """adminPass='fooBarBaz'"""
+        expected = """adminPass='***'"""
+        self.assertEqual(expected, utils.mask_data(payload))
+
+        payload = [{'adminPass': 'fooBarBaz'}, {"new_pass": "blah"}]
+        expected = [{'adminPass': '***'}, {"new_pass": "***"}]
+        self.assertEqual(expected, utils.mask_data(payload))
+
+        payload = ["adminPass", 'fooBarBaz']
+        expected = ["adminPass", 'fooBarBaz']
+        self.assertEqual(expected, utils.mask_data(payload))

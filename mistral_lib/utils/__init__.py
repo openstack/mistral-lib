@@ -28,6 +28,8 @@ import threading
 import eventlet
 from eventlet import corolocal
 from oslo_log import log as logging
+from oslo_utils.strutils import mask_dict_password
+from oslo_utils.strutils import mask_password
 from oslo_utils import timeutils
 from oslo_utils import uuidutils
 import pkg_resources as pkg
@@ -484,3 +486,12 @@ def generate_string(length):
         string.ascii_uppercase + string.digits)
         for _ in range(length)
     )
+
+
+def mask_data(obj):
+    if isinstance(obj, dict):
+        return mask_dict_password(obj)
+    elif isinstance(obj, list):
+        return [mask_data(i) for i in obj]
+    else:
+        return mask_password(obj)
