@@ -84,3 +84,20 @@ class TestUtils(tests_base.TestCase):
         s = utils.cut_dict(d, 100)
 
         self.assertIn(s, ["{1: 2, 3: 4}", "{3: 4, 1: 2}"])
+
+    def test_mask_data(self):
+        payload = {'adminPass': 'fooBarBaz'}
+        expected = {'adminPass': '***'}
+        self.assertEqual(expected, utils.mask_data(payload))
+
+        payload = """adminPass='fooBarBaz'"""
+        expected = """adminPass='***'"""
+        self.assertEqual(expected, utils.mask_data(payload))
+
+        payload = [{'adminPass': 'fooBarBaz'}, {"new_pass": "blah"}]
+        expected = [{'adminPass': '***'}, {"new_pass": "***"}]
+        self.assertEqual(expected, utils.mask_data(payload))
+
+        payload = ["adminPass", 'fooBarBaz']
+        expected = ["adminPass", 'fooBarBaz']
+        self.assertEqual(expected, utils.mask_data(payload))

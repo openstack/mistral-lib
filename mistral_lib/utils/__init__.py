@@ -14,6 +14,8 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+from oslo_utils.strutils import mask_dict_password
+from oslo_utils.strutils import mask_password
 
 
 def cut_dict(d, length=100):
@@ -139,3 +141,12 @@ def cut(data, length=100):
         return cut_dict(data, length=length)
 
     return cut_string(str(data), length=length)
+
+
+def mask_data(obj):
+    if isinstance(obj, dict):
+        return mask_dict_password(obj)
+    elif isinstance(obj, list):
+        return [mask_data(i) for i in obj]
+    else:
+        return mask_password(obj)
