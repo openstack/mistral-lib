@@ -32,8 +32,11 @@ class Result(serialization.MistralSerializable):
         )
 
     def cut_repr(self):
+        _data = utils.mask_data(self.data)
+        _error = utils.mask_data(self.error)
+        _cancel = utils.mask_data(self.cancel)
         return 'Result [data=%s, error=%s, cancel=%s]' % (
-            utils.cut(self.data), utils.cut(self.error), str(self.cancel)
+            utils.cut(_data), utils.cut(_error), str(_cancel)
         )
 
     def is_cancel(self):
