@@ -78,4 +78,5 @@ class ResultSerializer(serialization.DictBasedSerializer):
             entity_dict.get('cancel', False)
         )
 
+
 serialization.register_serializer(Result, ResultSerializer())

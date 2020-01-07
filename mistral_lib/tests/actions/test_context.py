@@ -15,28 +15,28 @@ from mistral_lib.tests import base as tests_base
 
 
 def _fake_context():
-        security_ctx = context.SecurityContext(
-            auth_uri='auth_uri',
-            auth_cacert='auth_cacert',
-            insecure='insecure',
-            service_catalog='service_catalog',
-            region_name='region_name',
-            is_trust_scoped='is_trust_scoped',
-            redelivered='redelivered',
-            expires_at='expires_at',
-            trust_id='trust_id',
-            is_target='is_target',
-            project_id='project_id')
+    security_ctx = context.SecurityContext(
+        auth_uri='auth_uri',
+        auth_cacert='auth_cacert',
+        insecure='insecure',
+        service_catalog='service_catalog',
+        region_name='region_name',
+        is_trust_scoped='is_trust_scoped',
+        redelivered='redelivered',
+        expires_at='expires_at',
+        trust_id='trust_id',
+        is_target='is_target',
+        project_id='project_id')
 
-        execution_ctx = context.ExecutionContext(
-            workflow_execution_id='workflow_execution_id',
-            task_execution_id='task_execution_id',
-            action_execution_id='action_execution_id',
-            workflow_name='workflow_name',
-            callback_url='callback_url')
+    execution_ctx = context.ExecutionContext(
+        workflow_execution_id='workflow_execution_id',
+        task_execution_id='task_execution_id',
+        action_execution_id='action_execution_id',
+        workflow_name='workflow_name',
+        callback_url='callback_url')
 
-        ctx = context.ActionContext(security_ctx, execution_ctx)
-        return ctx
+    ctx = context.ActionContext(security_ctx, execution_ctx)
+    return ctx
 
 
 class TestActionsBase(tests_base.TestCase):

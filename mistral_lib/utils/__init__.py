@@ -248,7 +248,7 @@ def cut_dict(d, length=100):
 
         idx += 1
 
-    if 0 <= length <= len(res) and res[length - 1] is not '}':
+    if 0 <= length <= len(res) and res[length - 1] != '}':
         res = res[:length - 3] + '...'
 
     return res
@@ -283,7 +283,7 @@ def cut_list(l, length=100):
             res += "'%s'" % s if is_str else s
         res += ', ' if idx < len(l) - 1 else ']'
 
-    if 0 <= length <= len(res) and res[length - 1] is not ']':
+    if 0 <= length <= len(res) and res[length - 1] != ']':
         res = res[:length - 3] + '...'
 
     return res
