@@ -34,7 +34,8 @@ How to write a Custom Action
    mistral.actions =
        example.runner = my.mistral_plugins.somefile:RunnerAction
 
-3. Reinstall your library package if it was installed in system (not in virtualenv).
+3. Reinstall your library package if it was installed in system
+   (not in virtualenv).
 
 4. Run db-sync tool to ensure your actions are in Mistral's database
 

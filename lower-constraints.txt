@@ -4,6 +4,7 @@ Babel==2.3.4
 coverage==4.0
 debtcollector==1.2.0
 docutils==0.11
+doc8==0.6.0
 dulwich==0.15.0
 eventlet==0.20.0
 extras==1.0.0
