@@ -11,6 +11,3 @@
    rocky
    queens
    pike
-   newton
-   mitaka
-   liberty
