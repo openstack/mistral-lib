@@ -175,8 +175,8 @@ def update_dict(left, right):
     return left
 
 
-def get_file_list(directory):
-    base_path = pkg.resource_filename("mistral", directory)
+def get_file_list(directory, package='mistral'):
+    base_path = pkg.resource_filename(package, directory)
 
     return [path.join(base_path, f) for f in os.listdir(base_path)
             if path.isfile(path.join(base_path, f))]
