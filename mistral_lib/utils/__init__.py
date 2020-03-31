@@ -17,6 +17,7 @@
 
 import datetime
 import functools
+import inspect
 import json
 import os
 from os import path
@@ -28,6 +29,7 @@ import threading
 import eventlet
 from eventlet import corolocal
 from oslo_log import log as logging
+from oslo_serialization import jsonutils
 from oslo_utils.strutils import mask_dict_password
 from oslo_utils.strutils import mask_password
 from oslo_utils import timeutils
@@ -495,3 +497,52 @@ def mask_data(obj):
         return [mask_data(i) for i in obj]
     else:
         return mask_password(obj)
+
+
+def to_json_str(obj):
+    """Serializes an object into a JSON string.
+
+    :param obj: Object to serialize.
+    :return: JSON string.
+    """
+
+    if obj is None:
+        return None
+
+    def _fallback(value):
+        if inspect.isgenerator(value):
+            result = list(value)
+
+            # The result of the generator call may be again not primitive
+            # so we need to call "to_primitive" again with the same fallback
+            # function. Note that the endless recursion here is not a problem
+            # because "to_primitive" limits the depth for custom classes,
+            # if they are present in the object graph being traversed.
+            return jsonutils.to_primitive(
+                result,
+                convert_instances=True,
+                fallback=_fallback
+            )
+
+        return value
+
+    # We need to convert the root of the given object graph into
+    # a primitive by hand so that we also enable conversion of
+    # object of custom classes into primitives. Otherwise, they are
+    # ignored by the "json" lib.
+    return jsonutils.dumps(
+        jsonutils.to_primitive(obj, convert_instances=True, fallback=_fallback)
+    )
+
+
+def from_json_str(json_str):
+    """Reconstructs an object from a JSON string.
+
+    :param json_str: A JSON string.
+    :return: Deserialized object.
+    """
+
+    if json_str is None:
+        return None
+
+    return jsonutils.loads(json_str)
