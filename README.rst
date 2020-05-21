@@ -23,6 +23,7 @@ need to use https://opendev.org/openstack/mistral-extra.
 * Documentation: https://docs.openstack.org/mistral/latest/
 * Source: https://opendev.org/openstack/mistral-lib
 * Bugs: https://bugs.launchpad.net/mistral
+* Release notes: https://docs.openstack.org/releasenotes/mistral-lib/
 
 Features
 --------
