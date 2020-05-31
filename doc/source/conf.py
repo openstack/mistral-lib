@@ -46,7 +46,7 @@ add_function_parentheses = True
 add_module_names = True
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = 'native'
 
 # -- Options for HTML output --------------------------------------------------
 
@@ -71,13 +71,8 @@ latex_documents = [
 # Example configuration for intersphinx: refer to the Python standard library.
 #intersphinx_mapping = {'http://docs.python.org/': None}
 
-# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
-# using the given strftime format.
-# html_last_updated_fmt = '%b %d, %Y'
-# Must set this variable to include year, month, day, hours, and minutes.
-html_last_updated_fmt = '%Y-%m-%d %H:%M'
-
 # -- Options for openstackdocstheme -------------------------------------------
-repository_name = 'openstack/mistral-lib'
-bug_project = 'mistral'
-bug_tag = ''
+openstackdocs_repo_name = 'openstack/mistral-lib'
+openstackdocs_auto_name = False
+openstackdocs_bug_project = 'mistral'
+openstackdocs_bug_tag = ''
