@@ -26,6 +26,7 @@ def get_public_fields(obj):
 
     for attribute_str in public_attributes:
         attr = getattr(obj, attribute_str)
+
         is_field = not (inspect.isbuiltin(attr) or
                         inspect.isfunction(attr) or
                         inspect.ismethod(attr) or

@@ -35,9 +35,12 @@ class ActionContext(serialization.MistralSerializable):
             "redelivered", "region_name", "service_catalog", "trust_id",
             "user_name"
         ]
+
         if name in deprecated:
             self._deprecation_warning(name)
+
             return getattr(self.security, name)
+
         return super(ActionContext, self).__getattribute__(name)
 
 
@@ -75,6 +78,7 @@ class ExecutionContext(object):
 
         if task_id is not None:
             self.task_execution_id = task_id
+
             self._deprecate_task_id_warning()
 
     def _deprecate_task_id_warning(self):
@@ -87,6 +91,7 @@ class ExecutionContext(object):
     @property
     def task_id(self):
         self._deprecate_task_id_warning()
+
         return self.task_execution_id
 
 

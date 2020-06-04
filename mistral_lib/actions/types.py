@@ -35,6 +35,7 @@ class Result(serialization.MistralSerializable):
         _data = utils.mask_data(self.data)
         _error = utils.mask_data(self.error)
         _cancel = utils.mask_data(self.cancel)
+
         return 'Result [data=%s, error=%s, cancel=%s]' % (
             utils.cut(_data), utils.cut(_error), str(_cancel)
         )

@@ -37,14 +37,9 @@ from oslo_utils import uuidutils
 import pkg_resources as pkg
 import random
 
+
 # Thread local storage.
 _th_loc_storage = threading.local()
-
-# TODO(rakhmerov): these two constants are misplaced. Utility methods
-# should not be Mistral specific. They should be generic enough so to
-# be moved to any other project w/o changes.
-ACTION_TASK_TYPE = 'ACTION'
-WORKFLOW_TASK_TYPE = 'WORKFLOW'
 
 
 def generate_unicode_uuid():
@@ -96,6 +91,7 @@ def set_thread_local(var_name, val):
 
     if val is not None:
         gl_storage = _get_greenlet_local_storage()
+
         if not gl_storage:
             gl_storage = _th_loc_storage.greenlet_locals[
                 corolocal.get_ident()] = {}
