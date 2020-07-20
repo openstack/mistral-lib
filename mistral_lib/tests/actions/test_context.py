@@ -35,14 +35,12 @@ def _fake_context():
         workflow_name='workflow_name',
         callback_url='callback_url')
 
-    ctx = context.ActionContext(security_ctx, execution_ctx)
-    return ctx
+    return context.ActionContext(security_ctx, execution_ctx)
 
 
 class TestActionsBase(tests_base.TestCase):
 
     def test_empty_context(self):
-
         ctx = context.ActionContext(
             context.SecurityContext(),
             context.ExecutionContext()
@@ -55,7 +53,6 @@ class TestActionsBase(tests_base.TestCase):
         self.assertEqual(ctx.execution.workflow_name, None)
 
     def test_deprecated_properties(self):
-
         ctx = _fake_context()
 
         deprecated_properties = [
@@ -68,28 +65,32 @@ class TestActionsBase(tests_base.TestCase):
         for deprecated in deprecated_properties:
             old = getattr(ctx, deprecated)
             new = getattr(ctx.security, deprecated)
+
             self.assertEqual(old, new)
 
 
 class TestActionContextSerializer(tests_base.TestCase):
 
     def test_serialization(self):
-
         ctx = _fake_context()
+
         serialiser = context.ActionContextSerializer()
+
         dict_ctx = serialiser.serialize_to_dict(ctx)
 
         self.assertEqual(dict_ctx['security'], vars(ctx.security))
         self.assertEqual(dict_ctx['execution'], vars(ctx.execution))
 
     def test_deserialization(self):
-
         ctx = _fake_context()
+
         serialiser = context.ActionContextSerializer()
+
         dict_ctx = serialiser.serialize_to_dict(ctx)
         ctx_2 = serialiser.deserialize_from_dict(dict_ctx)
 
         self.assertEqual(ctx.security.auth_uri, ctx_2.security.auth_uri)
         self.assertEqual(
             ctx.execution.workflow_name,
-            ctx_2.execution.workflow_name)
+            ctx_2.execution.workflow_name
+        )

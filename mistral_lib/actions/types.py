@@ -19,7 +19,7 @@ from mistral_lib import utils
 
 
 class Result(serialization.MistralSerializable):
-    """Explicit data structure containing a result of task execution."""
+    """Action result."""
 
     def __init__(self, data=None, error=None, cancel=False):
         self.data = data
@@ -60,8 +60,7 @@ class Result(serialization.MistralSerializable):
         return not self.__eq__(other)
 
     def to_dict(self):
-        return ({'result': self.data}
-                if self.is_success() else {'result': self.error})
+        return {'result': self.data if self.is_success() else self.error}
 
 
 class ResultSerializer(serialization.DictBasedSerializer):

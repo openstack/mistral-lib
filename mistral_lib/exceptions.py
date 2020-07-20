@@ -75,3 +75,7 @@ class MistralException(Exception):
     """
 
     message = "An unknown exception occurred"
+
+
+class ActionException(MistralException):
+    message = "Failed to process an action"
