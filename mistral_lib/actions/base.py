@@ -169,8 +169,10 @@ class ActionDescriptor(abc.ABC):
 
         Each parameter name can be either just a name or a string
         "param=val" where "param" is the name of the parameter
-        and "val" its default value. All names and values in the
-        string must be JSON-compatible.
+        and "val" its default value. The values are only indications
+        for the user and not used in the action instantiation process.
+        The string is split along the commas and then the parts along the
+        equal signs. Escaping is not possible.
         """
         pass
 
