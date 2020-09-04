@@ -1,0 +1,18 @@
+---
+features:
+  - |
+    Added the new infrastracture that will allow to manage Mistral actons
+    in a much more flexible way. It is based on the action provider concept.
+    An action provider is responsible for delivering actions to Mistral.
+    Mistral cluster administrators can plugin multiple action providers
+    that will deliver actions in their own way, possibly using different
+    backend storages, caching techinques and so on. Along with the
+    ActionProvider interface there has been added the ActionDescriptor
+    interface that carries meta information about an action and responsible
+    for instantiating the action. Also added base convenient classes.
+fixes:
+  - |
+    Fixed a number of typos and logical mistakes in docstrings and also
+    added the exception class ActionException that actions can raise
+    in case of their internal errors. Mistral will be handling those
+    exceptions starting from the Victoria official version.
