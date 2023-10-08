@@ -33,7 +33,10 @@ def _fake_context():
         task_execution_id='task_execution_id',
         action_execution_id='action_execution_id',
         workflow_name='workflow_name',
-        callback_url='callback_url')
+        callback_url='callback_url',
+        with_items_index=0,
+        task_rerun_no=0,
+        task_rerun_id='task_rerun_id')
 
     return context.ActionContext(security_ctx, execution_ctx)
 
