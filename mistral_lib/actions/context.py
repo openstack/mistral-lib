@@ -70,7 +70,8 @@ class ExecutionContext(object):
     def __init__(self, workflow_execution_id=None, task_execution_id=None,
                  action_execution_id=None, workflow_name=None,
                  callback_url=None, task_id=None, with_items_index=0,
-                 task_rerun_no=0, task_rerun_id=None):
+                 task_rerun_no=0, task_rerun_id=None,
+                 workflow_propagated_headers=None):
         self.workflow_execution_id = workflow_execution_id
         self.task_execution_id = task_execution_id
         self.action_execution_id = action_execution_id
@@ -79,10 +80,10 @@ class ExecutionContext(object):
         self.with_items_index = with_items_index
         self.task_rerun_no = task_rerun_no
         self.task_rerun_id = task_rerun_id
+        self.workflow_propagated_headers = workflow_propagated_headers
 
         if task_id is not None:
             self.task_execution_id = task_id
-
             self._deprecate_task_id_warning()
 
     def _deprecate_task_id_warning(self):
