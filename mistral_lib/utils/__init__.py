@@ -180,7 +180,7 @@ def get_file_list(directory, package='mistral'):
             if path.isfile(path.join(base_path, f))]
 
 
-def cut_dict(d, length=100):
+def cut_dict(dict_data, length=100):
     """Removes dictionary entries according to the given length.
 
     This method removes a number of entries, if needed, so that a
@@ -197,18 +197,18 @@ def cut_dict(d, length=100):
     be only approximately equal to the given value (up to around several
     chars difference).
 
-    :param d: A dictionary.
+    :param dict_data: A dictionary.
     :param length: A length limiting the dictionary string representation.
     :return: A dictionary which is a subset of the given dictionary.
     """
-    if not isinstance(d, dict):
-        raise ValueError("A dictionary is expected, got: %s" % type(d))
+    if not isinstance(dict_data, dict):
+        raise ValueError("A dictionary is expected, got: %s" % type(dict_data))
 
     res = "{"
 
     idx = 0
 
-    for key, value in d.items():
+    for key, value in dict_data.items():
         k = str(key)
         v = str(value)
 
@@ -242,7 +242,7 @@ def cut_dict(d, length=100):
         else:
             res += "'%s'" % v if is_str else v
 
-        res += ', ' if idx < len(d) - 1 else '}'
+        res += ', ' if idx < len(dict_data) - 1 else '}'
 
         idx += 1
 
@@ -252,19 +252,19 @@ def cut_dict(d, length=100):
     return res
 
 
-def cut_list(l, length=100):
+def cut_list(list_data, length=100):
     """Truncates string representation of a list for a given length.
 
-    :param l: list to truncate
+    :param list_data: list to truncate
     :param length: amount of characters to truncate to
     :return: string containing given length of characters from the list
     """
-    if not isinstance(l, list):
-        raise ValueError("A list is expected, got: %s" % type(l))
+    if not isinstance(list_data, list):
+        raise ValueError("A list is expected, got: %s" % type(list_data))
 
     res = '['
 
-    for idx, item in enumerate(l):
+    for idx, item in enumerate(list_data):
         s = str(item)
 
         new_len = len(res) + len(s)
@@ -279,7 +279,7 @@ def cut_list(l, length=100):
             break
         else:
             res += "'%s'" % s if is_str else s
-        res += ', ' if idx < len(l) - 1 else ']'
+        res += ', ' if idx < len(list_data) - 1 else ']'
 
     if 0 <= length <= len(res) and res[length - 1] != ']':
         res = res[:length - 3] + '...'
@@ -287,17 +287,17 @@ def cut_list(l, length=100):
     return res
 
 
-def cut_string(s, length=100):
+def cut_string(str_data, length=100):
     """Truncates a string for a given length.
 
        :param s: string to truncate
        :param length: amount of characters to truncate to
        :return: string containing given length of characters
        """
-    if 0 <= length < len(s):
-        return "%s..." % s[:length]
+    if 0 <= length < len(str_data):
+        return "%s..." % str_data[:length]
 
-    return s
+    return str_data
 
 
 def cut(data, length=100):
