@@ -25,8 +25,8 @@ import socket
 import string
 import sys
 import threading
+import time
 
-import eventlet
 from eventlet import corolocal
 from oslo_log import log as logging
 from oslo_serialization import jsonutils
@@ -361,7 +361,7 @@ def random_sleep(limit=1):
 
     print("Sleep: %s sec..." % seconds)
 
-    eventlet.sleep(seconds)
+    time.sleep(seconds)
 
 
 class NotDefined(object):
