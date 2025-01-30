@@ -27,7 +27,6 @@ import sys
 import threading
 import time
 
-from eventlet import corolocal
 from oslo_log import log as logging
 from oslo_serialization import jsonutils
 from oslo_utils.strutils import mask_dict_password
@@ -50,53 +49,29 @@ def is_valid_uuid(uuid_string):
     return uuidutils.is_uuid_like(uuid_string)
 
 
-def _get_greenlet_local_storage():
-    greenlet_id = corolocal.get_ident()
-
-    greenlet_locals = getattr(_th_loc_storage, "greenlet_locals", None)
-
-    if not greenlet_locals:
-        greenlet_locals = {}
-        _th_loc_storage.greenlet_locals = greenlet_locals
-
-    if greenlet_id in greenlet_locals:
-        return greenlet_locals[greenlet_id]
-    else:
-        return None
+def _get_thread_local_storage():
+    if not hasattr(_th_loc_storage, "storage"):
+        _th_loc_storage.storage = {}
+    return _th_loc_storage.storage
 
 
 def has_thread_local(var_name):
-    gl_storage = _get_greenlet_local_storage()
-    return gl_storage and var_name in gl_storage
+    return var_name in _get_thread_local_storage()
 
 
 def get_thread_local(var_name):
-    if not has_thread_local(var_name):
-        return None
-
-    return _get_greenlet_local_storage()[var_name]
+    return _get_thread_local_storage().get(var_name)
 
 
 def set_thread_local(var_name, val):
-    if val is None and has_thread_local(var_name):
-        gl_storage = _get_greenlet_local_storage()
+    storage = _get_thread_local_storage()
 
-        # Delete variable from greenlet local storage.
-        if gl_storage:
-            del gl_storage[var_name]
-
-        # Delete the entire greenlet local storage from thread local storage.
-        if gl_storage and len(gl_storage) == 0:
-            del _th_loc_storage.greenlet_locals[corolocal.get_ident()]
-
-    if val is not None:
-        gl_storage = _get_greenlet_local_storage()
-
-        if not gl_storage:
-            gl_storage = _th_loc_storage.greenlet_locals[
-                corolocal.get_ident()] = {}
-
-        gl_storage[var_name] = val
+    if val is None:
+        storage.pop(var_name, None)
+        if not storage:
+            delattr(_th_loc_storage, "storage")
+    else:
+        storage[var_name] = val
 
 
 def log_exec(logger, level=logging.DEBUG):
