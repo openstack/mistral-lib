@@ -1,12 +1,3 @@
-========================
-Team and repository tags
-========================
-
-.. image:: http://governance.openstack.org/badges/mistral-lib.svg
-    :target: http://governance.openstack.org/reference/tags/index.html
-
-.. Change things from this point on
-
 ===========
 mistral-lib
 ===========
@@ -24,8 +15,3 @@ need to use https://opendev.org/openstack/mistral-extra.
 * Source: https://opendev.org/openstack/mistral-lib
 * Bugs: https://bugs.launchpad.net/mistral
 * Release notes: https://docs.openstack.org/releasenotes/mistral-lib/
-
-Features
---------
-
-* TODO
