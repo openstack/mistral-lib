@@ -2,6 +2,10 @@
 mistral-lib
 ===========
 
+.. image:: http://governance.openstack.org/badges/mistral-lib.svg
+
+.. Change things from this point on
+
 This library contains data types, exceptions, functions and utilities common to
 Mistral, python-mistralclient and mistral-extra repositories. This library also
 contains the public interfaces for 3rd party integration (e.g. Actions API, YAQL
