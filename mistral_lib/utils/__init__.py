@@ -17,6 +17,7 @@
 
 import datetime
 import functools
+import importlib.resources
 import inspect
 import json
 import os
@@ -33,7 +34,6 @@ from oslo_utils.strutils import mask_dict_password
 from oslo_utils.strutils import mask_password
 from oslo_utils import timeutils
 from oslo_utils import uuidutils
-import pkg_resources as pkg
 import random
 
 
@@ -149,10 +149,10 @@ def update_dict(left, right):
 
 
 def get_file_list(directory, package='mistral'):
-    base_path = pkg.resource_filename(package, directory)
+    base_path = importlib.resources.files(package).joinpath(directory)
 
-    return [path.join(base_path, f) for f in os.listdir(base_path)
-            if path.isfile(path.join(base_path, f))]
+    return [base_path.joinpath(f) for f in os.listdir(base_path)
+            if path.isfile(base_path.joinpath(f))]
 
 
 def cut_dict(dict_data, length=100):
