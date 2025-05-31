@@ -37,7 +37,7 @@ class MistralExceptionBase(Exception):
     def code(self):
         """This is here for webob to read.
 
-        https://github.com/Pylons/webob/blob/master/webob/exc.py
+        https://github.com/Pylons/webob/blob/main/src/webob/exc.py
         """
 
         return self.http_code
