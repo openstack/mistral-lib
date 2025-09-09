@@ -331,11 +331,7 @@ def random_sleep(limit=1):
 
     :param limit: Float number of seconds that a sleep period must not exceed.
     """
-
     seconds = random.Random().randint(0, limit * 1000) * 0.001
-
-    print("Sleep: %s sec..." % seconds)
-
     time.sleep(seconds)
 
 
