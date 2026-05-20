@@ -32,4 +32,4 @@ Homepage = "https://docs.openstack.org/mistral/latest/"
 Repository = "https://opendev.org/openstack/mistral-lib"
 
 [tool.setuptools.packages.find]
-include = ["mistral_lib"]
+include = ["mistral_lib*"]
